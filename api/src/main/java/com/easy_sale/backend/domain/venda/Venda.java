@@ -1,5 +1,6 @@
 package com.easy_sale.backend.domain;
 
+import com.easy_sale.backend.domain.cliente.Cliente;
 import com.easy_sale.backend.domain.pagamento.Pagamento;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;

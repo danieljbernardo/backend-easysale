@@ -1,5 +1,6 @@
 package com.easy_sale.backend.domain;
 
+import com.easy_sale.backend.domain.produto.Produto;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
