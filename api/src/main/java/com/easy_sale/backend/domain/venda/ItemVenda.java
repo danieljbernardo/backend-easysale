@@ -1,4 +1,4 @@
-package com.easy_sale.backend.domain;
+package com.easy_sale.backend.domain.venda;
 
 import com.easy_sale.backend.domain.produto.Produto;
 import jakarta.persistence.*;
@@ -22,7 +22,7 @@ public class ItemVenda {
     private Produto produto;
 
     private Long quantidade;
-    private BigDecimal precoUnitario;
+    private BigDecimal precoUnitario=BigDecimal.ZERO;
 
     public ItemVenda(Venda venda, Produto produto, Long quantidade, BigDecimal precoUnitario) {
         this.venda = venda;
@@ -65,4 +65,5 @@ public class ItemVenda {
     public void setPrecoUnitario(BigDecimal precoUnitario) {
         this.precoUnitario = precoUnitario;
     }
+
 }

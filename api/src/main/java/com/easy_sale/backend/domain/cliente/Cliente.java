@@ -1,5 +1,6 @@
-package com.easy_sale.backend.domain;
+package com.easy_sale.backend.domain.cliente;
 
+import com.easy_sale.backend.domain.venda.Venda;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
@@ -21,11 +22,10 @@ public class Cliente {
     @JsonIgnore
     private List<Venda> vendas;
 
-    public Cliente(String nome, String cpf, String telefone, List<Venda> vendas) {
+    public Cliente(String nome, String cpf, String telefone) {
         this.nome = nome;
         this.cpf = cpf;
         this.telefone = telefone;
-        this.vendas = vendas;
     }
 
     public Cliente() {

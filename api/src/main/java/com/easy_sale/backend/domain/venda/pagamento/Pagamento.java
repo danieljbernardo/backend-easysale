@@ -1,6 +1,6 @@
-package com.easy_sale.backend.domain.pagamento;
+package com.easy_sale.backend.domain.venda.pagamento;
 
-import com.easy_sale.backend.domain.Venda;
+import com.easy_sale.backend.domain.venda.Venda;
 import jakarta.persistence.*;
 
 @Entity

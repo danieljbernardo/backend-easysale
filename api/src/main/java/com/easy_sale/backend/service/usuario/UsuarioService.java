@@ -1,4 +1,4 @@
-package com.easy_sale.backend.service;
+package com.easy_sale.backend.service.usuario;
 
 import org.springframework.stereotype.Service;
 

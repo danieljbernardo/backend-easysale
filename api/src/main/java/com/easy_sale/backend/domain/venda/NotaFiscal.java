@@ -1,9 +1,10 @@
-package com.easy_sale.backend.domain;
+package com.easy_sale.backend.domain.venda;
 
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "nota_fiscal")
@@ -13,19 +14,23 @@ public class NotaFiscal {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long numeroNota;
+
     @OneToOne
     @JoinColumn(name = "venda_id")
     private Venda venda;
 
-    private BigDecimal valorTotal;
-    private Long numeroNota;
-    private Long serie;
-    private LocalDate dataEmissao;
+    private BigDecimal valorTotal=BigDecimal.ZERO;
+    private LocalDateTime dataEmissao;
 
-    public NotaFiscal(LocalDate dataEmissao, Long serie, Long numeroNota, BigDecimal valorTotal, Venda venda) {
-        this.dataEmissao = dataEmissao;
-        this.serie = serie;
-        this.numeroNota = numeroNota;
+    @PrePersist
+    public void salvaData(){
+        this.dataEmissao=LocalDateTime.now();
+
+    }
+
+    public NotaFiscal(BigDecimal valorTotal, Venda venda) {
         this.valorTotal = valorTotal;
         this.venda = venda;
     }
@@ -65,19 +70,12 @@ public class NotaFiscal {
         this.numeroNota = numeroNota;
     }
 
-    public LocalDate getDataEmissao() {
+    public LocalDateTime getDataEmissao() {
         return dataEmissao;
     }
 
-    public void setDataEmissao(LocalDate dataEmissao) {
+    public void setDataEmissao(LocalDateTime dataEmissao) {
         this.dataEmissao = dataEmissao;
     }
 
-    public Long getSerie() {
-        return serie;
-    }
-
-    public void setSerie(Long serie) {
-        this.serie = serie;
-    }
 }

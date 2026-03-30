@@ -1,4 +1,4 @@
-package com.easy_sale.backend.domain.pagamento;
+package com.easy_sale.backend.domain.venda.pagamento;
 
 public enum FormaPagamento {
 

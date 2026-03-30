@@ -1,11 +1,13 @@
-package com.easy_sale.backend.domain;
+package com.easy_sale.backend.domain.venda;
 
 import com.easy_sale.backend.domain.cliente.Cliente;
-import com.easy_sale.backend.domain.pagamento.Pagamento;
+import com.easy_sale.backend.domain.venda.pagamento.Pagamento;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
@@ -32,17 +34,24 @@ public class Venda {
     @JsonIgnore
     private Pagamento pagamento;
 
-    private LocalDate dataVenda;
+    private BigDecimal valorTotal=BigDecimal.ZERO;
+
+    private LocalDateTime dataVenda;
+
+    @PrePersist
+    public void salvaData(){
+        this.dataVenda=LocalDateTime.now();
+
+    }
 
     public Venda() {
     }
 
-    public Venda(Cliente cliente, List<ItemVenda> itensVendidos, NotaFiscal notaFiscal, Pagamento pagamento, LocalDate dataVenda) {
+    public Venda(Cliente cliente, NotaFiscal notaFiscal, Pagamento pagamento, BigDecimal valorTotal) {
         this.cliente = cliente;
-        this.itensVendidos = itensVendidos;
         this.notaFiscal = notaFiscal;
         this.pagamento = pagamento;
-        this.dataVenda = dataVenda;
+        this.valorTotal=valorTotal;
     }
 
     public Long getId() {
@@ -85,11 +94,20 @@ public class Venda {
         this.pagamento = pagamento;
     }
 
-    public LocalDate getDataVenda() {
+    public LocalDateTime getDataVenda() {
         return dataVenda;
     }
 
-    public void setDataVenda(LocalDate dataVenda) {
+    public void setDataVenda(LocalDateTime dataVenda) {
         this.dataVenda = dataVenda;
     }
+
+    public BigDecimal getValorTotal() {
+        return valorTotal;
+    }
+
+    public void setValorTotal(BigDecimal valorTotal) {
+        this.valorTotal = valorTotal;
+    }
+
 }

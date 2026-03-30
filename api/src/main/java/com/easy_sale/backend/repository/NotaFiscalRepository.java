@@ -1,9 +1,9 @@
 package com.easy_sale.backend.repository;
 
-import com.easy_sale.backend.domain.venda.ItemVenda;
+import com.easy_sale.backend.domain.venda.NotaFiscal;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ItemVendaRepository extends JpaRepository<ItemVenda, Long> {
+public interface NotaFiscalRepository extends JpaRepository<NotaFiscal, Long> {
 }

@@ -1,5 +1,6 @@
-package com.easy_sale.backend.domain;
+package com.easy_sale.backend.domain.produto;
 
+import com.easy_sale.backend.domain.venda.ItemVenda;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
@@ -14,19 +15,20 @@ public class Produto {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private Long codigo;
+
     @OneToMany(mappedBy = "produto", cascade = CascadeType.PERSIST)
     @JsonIgnore
     private List<ItemVenda> itensVendidos;
 
     private String nome;
-    private BigDecimal preco;
+    private BigDecimal preco=BigDecimal.ZERO;
     private String descricao;
 
-    public Produto(String descricao, BigDecimal preco, String nome, List<ItemVenda> itensVendidos) {
-        this.descricao = descricao;
-        this.preco = preco;
+    public Produto(String nome, Long codigo, BigDecimal preco, String descricao) {
         this.nome = nome;
-        this.itensVendidos = itensVendidos;
+        this.preco = preco;
+        this.descricao = descricao;
     }
 
     public Produto() {
@@ -70,5 +72,13 @@ public class Produto {
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;
+    }
+
+    public Long getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(Long codigo) {
+        this.codigo = codigo;
     }
 }
