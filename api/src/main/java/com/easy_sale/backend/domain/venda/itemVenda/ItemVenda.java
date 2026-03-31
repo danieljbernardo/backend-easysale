@@ -24,13 +24,7 @@ public class ItemVenda {
 
     private Long quantidade;
     private BigDecimal precoUnitario=BigDecimal.ZERO;
-
-    public ItemVenda(Venda venda, Produto produto, Long quantidade, BigDecimal precoUnitario) {
-        this.venda = venda;
-        this.produto = produto;
-        this.quantidade = quantidade;
-        this.precoUnitario = precoUnitario;
-    }
+    private BigDecimal subtototal=BigDecimal.ZERO;
 
     public ItemVenda() {
     }
@@ -69,6 +63,14 @@ public class ItemVenda {
 
     public Long getId() {
         return id;
+    }
+
+    public BigDecimal getSubtototal() {
+        return subtototal;
+    }
+
+    public void setSubtototal(BigDecimal subtototal) {
+        this.subtototal = subtototal;
     }
 
     public void setId(Long id) {

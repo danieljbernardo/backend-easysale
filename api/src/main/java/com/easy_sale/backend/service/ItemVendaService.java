@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
+
 @Service
 public class ItemVendaService {
 
@@ -19,12 +21,17 @@ public class ItemVendaService {
 
     public ResponseEntity editandoItemVenda(EditarItemVendaDTO editarItemVendaDTO){
         ItemVenda itemVenda=this.itemVendaRepository.findByIdItemVenda(editarItemVendaDTO.itemVendaId());
+
         if(editarItemVendaDTO.produtoCodigo()!=null){
             itemVenda.setProduto(this.produtoRepository.findByCodigo(editarItemVendaDTO.produtoCodigo()));
             itemVenda.setPrecoUnitario(this.produtoRepository.findByCodigo(editarItemVendaDTO.produtoCodigo()).getPreco());
+            BigDecimal qntdBigDecimal=new BigDecimal(itemVenda.getQuantidade());
+            itemVenda.setSubtototal(itemVenda.getPrecoUnitario().multiply(qntdBigDecimal));
         }
         if(editarItemVendaDTO.quantidade()!=null){
             itemVenda.setQuantidade(editarItemVendaDTO.quantidade());
+            BigDecimal qntdBigDecimal=new BigDecimal(itemVenda.getQuantidade());
+            itemVenda.setSubtototal(itemVenda.getPrecoUnitario().multiply(qntdBigDecimal));
         }
         itemVendaRepository.save(itemVenda);
         return ResponseEntity.ok().build();

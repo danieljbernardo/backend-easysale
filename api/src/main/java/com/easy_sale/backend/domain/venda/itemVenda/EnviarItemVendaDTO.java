@@ -27,7 +27,10 @@ public record EnviarItemVendaDTO(
         Long quantidade,
 
         @NotNull
-        BigDecimal precoUnitario
+        BigDecimal precoUnitario,
+
+        @NotNull
+        BigDecimal subtotal
 
 ) {
 }

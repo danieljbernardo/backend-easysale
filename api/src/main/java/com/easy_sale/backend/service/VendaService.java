@@ -74,6 +74,7 @@ public class VendaService {
 
             BigDecimal quantidadeBigDecimal = new BigDecimal(quantidade);
             valorDaVenda = valorDaVenda.add(itemVenda.getPrecoUnitario().multiply(quantidadeBigDecimal));
+            itemVenda.setSubtototal(itemVenda.getPrecoUnitario().multiply(quantidadeBigDecimal));
             this.itemVendaRepository.save(itemVenda);
         }
 
@@ -115,7 +116,7 @@ public class VendaService {
                         List<EnviarItemVendaDTO> itensDTO=this.itemVendaRepository.findByVenda(venda).stream()
                                 .map(itemVenda -> new EnviarItemVendaDTO( itemVenda.getId(),
                                         itemVenda.getProduto().getCodigo(), itemVenda.getProduto().getNome(), itemVenda.getQuantidade(),
-                                        itemVenda.getPrecoUnitario()
+                                        itemVenda.getPrecoUnitario(), itemVenda.getSubtototal()
                                 ))
                                 .toList();
 

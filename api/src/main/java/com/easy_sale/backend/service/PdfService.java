@@ -81,7 +81,7 @@ public class PdfService {
                 tableItens.addCell(item.getProduto().getNome());
                 tableItens.addCell(item.getQuantidade().toString());
                 tableItens.addCell(moeda.format(item.getPrecoUnitario()));
-                tableItens.addCell(moeda.format(item.getSubTotal()));
+                tableItens.addCell(moeda.format(moeda.format(item.getSubtototal())));
             }
 
             document.add(tableItens);
@@ -100,13 +100,13 @@ public class PdfService {
         }
     }
 
-    public byte[] gerarRelatorioVenda(Venda venda){
+  /*  public byte[] gerarRelatorioVenda(Venda venda){
         try(ByteArrayOutputStream baos=new ByteArrayOutputStream()){
             Document document=new Document();
             PdfWriter.getInstance(document,baos);
             document.open();
 
-            Paragraph cabecalho=new Paragraph("Relatório de Vendas",
+            Paragraph cabecalho=new Paragraph("RELATÓRIO DE VENDAS",
                     FontFactory.getFont(FontFactory.HELVETICA_BOLD,18));
             cabecalho.setAlignment(Element.ALIGN_CENTER);
             document.add(cabecalho);
@@ -126,5 +126,5 @@ public class PdfService {
         }catch (Exception e){
             throw new RuntimeException("Erro ao gerar relatório", e);
         }
-    }
+    }*/
 }
