@@ -100,7 +100,7 @@ public class PdfService {
         }
     }
 
-  /*  public byte[] gerarRelatorioVenda(Venda venda){
+    public byte[] gerarRelatorioVenda(Venda venda){
         try(ByteArrayOutputStream baos=new ByteArrayOutputStream()){
             Document document=new Document();
             PdfWriter.getInstance(document,baos);
@@ -117,7 +117,6 @@ public class PdfService {
             PdfPTable tabelaVendas=new PdfPTable(6);
 
 
-
             for()
 
 
@@ -126,5 +125,5 @@ public class PdfService {
         }catch (Exception e){
             throw new RuntimeException("Erro ao gerar relatório", e);
         }
-    }*/
+    }
 }

@@ -26,6 +26,14 @@ public class ItemVenda {
     private BigDecimal precoUnitario=BigDecimal.ZERO;
     private BigDecimal subtototal=BigDecimal.ZERO;
 
+    public ItemVenda(Venda venda, Produto produto, Long quantidade, BigDecimal precoUnitario, BigDecimal subtototal) {
+        this.venda = venda;
+        this.produto = produto;
+        this.quantidade = quantidade;
+        this.precoUnitario = precoUnitario;
+        this.subtototal = subtototal;
+    }
+
     public ItemVenda() {
     }
 

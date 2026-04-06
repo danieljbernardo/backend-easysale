@@ -1,7 +1,6 @@
 package com.easy_sale.backend.domain.venda.itemVenda;
 
-import com.easy_sale.backend.domain.produto.Produto;
-import com.easy_sale.backend.domain.venda.Venda;
+
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;

@@ -12,5 +12,8 @@ import java.util.ArrayList;
 public interface ItemVendaRepository extends JpaRepository<ItemVenda, Long> {
 
     ArrayList<ItemVenda> findByVenda(Venda venda);
+
     ItemVenda findByIdItemVenda(Long id);
+
+    ItemVenda findByVendaProduto(Venda venda, Produto produto);
 }
