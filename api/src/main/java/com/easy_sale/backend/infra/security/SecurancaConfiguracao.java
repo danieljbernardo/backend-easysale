@@ -15,8 +15,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import static java.util.GregorianCalendar.BC;
-
 @Configuration
 @EnableWebSecurity
 public class SecurancaConfiguracao {
@@ -30,10 +28,12 @@ public class SecurancaConfiguracao {
                 .csrf(AbstractHttpConfigurer::disable)
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers(HttpMethod.POST, "/autenticacao").permitAll()
-                        .requestMatchers(HttpMethod.DELETE, "/cliente", "/produto").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.PATCH, "/cliente", "/produto").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.POST, "/cliente", "/produto").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/easysale/autenticacao/**", "/easysale/vendas/**",
+                                "/easysale/usuario/**").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/easysale/autenticacao").permitAll()
+                        .requestMatchers(HttpMethod.DELETE, "/easysale/cliente/**", "/easysale/produto/**").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.PATCH, "/easysale/cliente/**", "/easysale/produto/**").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/easysale/cliente/**", "/easysale/produto/**").hasRole("ADMIN")
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
@@ -46,7 +46,7 @@ public class SecurancaConfiguracao {
     }
 
     @Bean
-    public PasswordEncoder paswordEncoder(){
+    public PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
     }
 }
