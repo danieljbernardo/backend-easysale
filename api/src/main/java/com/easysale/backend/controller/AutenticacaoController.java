@@ -1,6 +1,5 @@
 package com.easysale.backend.controller;
 
-import com.easy_sale.backend.domain.usuario.*;
 import com.easysale.backend.domain.usuario.AutenticacaoDTO;
 import com.easysale.backend.domain.usuario.UsuarioDTO;
 import com.easysale.backend.service.AutenticacaoService;

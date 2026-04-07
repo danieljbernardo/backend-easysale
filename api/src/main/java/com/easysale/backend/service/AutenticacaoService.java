@@ -1,10 +1,7 @@
 package com.easysale.backend.service;
 
 import com.easy_sale.backend.domain.usuario.*;
-import com.easysale.backend.domain.usuario.AutenticacaoDTO;
-import com.easysale.backend.domain.usuario.Usuario;
-import com.easysale.backend.domain.usuario.UsuarioDTO;
-import com.easysale.backend.domain.usuario.UsuarioRole;
+import com.easysale.backend.domain.usuario.*;
 import com.easysale.backend.infra.security.TokenService;
 import com.easysale.backend.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,9 +28,15 @@ public class AutenticacaoService {
         var emailSenha=new UsernamePasswordAuthenticationToken(autenticacaoDTO.email(), autenticacaoDTO.senha());
         var autenticacao=this.authenticationManager.authenticate(emailSenha);
 
-        var token=this.tokenService.gerarToken((Usuario) autenticacao.getPrincipal());
+        Usuario usuario=(Usuario) autenticacao.getPrincipal();
+        var token=this.tokenService.gerarToken(usuario);
 
-        return ResponseEntity.ok().body(token);
+        LoginDTO resposta = new LoginDTO(
+                token,
+                usuario.getRole().name()
+        );
+
+        return ResponseEntity.ok().body(resposta);
     }
 
     public ResponseEntity fazendoCadastro(UsuarioDTO usuarioDTO){
