@@ -1,32 +1,28 @@
 package com.easysale.backend.controller;
 
 import com.easysale.backend.domain.venda.BuscarVendaDTO;
-import com.easysale.backend.service.PdfService;
+import com.easysale.backend.service.UsuarioService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/easysale/usuario")
 public class UsuarioController {
 
     @Autowired
-    PdfService pdfService;
+    UsuarioService usuarioService;
 
     @PostMapping("/gerar-relatorio")
-    public ResponseEntity gerandoRelatorioVenda(@RequestBody @Valid BuscarVendaDTO buscarVendaDTO){
-        byte[] relatorio=pdfService.gerarRelatorioVenda(buscarVendaDTO);
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_PDF);
-        headers.setContentDispositionFormData("attachment",
-                "relatorio.pdf");
+    public ResponseEntity gerarRelatorioVenda(@RequestBody @Valid BuscarVendaDTO buscarVendaDTO){
+        return this.usuarioService.gerarRelatorioVenda(buscarVendaDTO);
+    }
 
-        return ResponseEntity.ok().headers(headers).body(relatorio);
+    @DeleteMapping("/excluir-usuario")
+    public ResponseEntity excluirUsuario(@AuthenticationPrincipal UserDetails usuario){
+        return this.usuarioService.excluindoUsuario(usuario);
     }
 }
