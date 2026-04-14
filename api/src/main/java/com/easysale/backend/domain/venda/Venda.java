@@ -3,6 +3,7 @@ package com.easysale.backend.domain.venda;
 import com.easysale.backend.domain.cliente.Cliente;
 import com.easysale.backend.domain.venda.itemVenda.ItemVenda;
 import com.easysale.backend.domain.venda.pagamento.Pagamento;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -38,6 +39,7 @@ public class Venda {
     private BigDecimal valorTotal=BigDecimal.ZERO;
 
     @CreationTimestamp
+    @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate dataVenda;
 
     public Venda() {
